@@ -1,0 +1,32 @@
+what this application will basically do is: 
+    - connect to a mongo db docker container which will serve as the database of this application 
+    - mongo express is more like a UI to the mongo db
+
+
+
+
+- you can have 2 docker images (mongo & mongo express) communicated with each other
+- they are able to do that because they are in the same network
+- to do that you can use <docker network> command to create this communitcation 
+
+
+
+####some docker commands 
+#start the mongodb with required variabeles 
+docker run -d  \
+-p 27017:27017 \
+-e MONGO_INITDB_ROOT_USERNAME=admin \
+-e MONGO_INITDB_ROOT_PASSWORD=password \
+--name mongodb \
+--net mongo-network \
+63645998e0f4
+
+#start the mongo express 
+docker run -d \
+-p 8081:8081 \
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+--net mongo-network \
+--name mongo-express \
+1133e12468c7
