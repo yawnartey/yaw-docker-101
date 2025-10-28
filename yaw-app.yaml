@@ -1,0 +1,25 @@
+#this docker compose file downloads a server.js web app docker images that was built locally from amazon ecr repository
+#it then downloads the mongo-db docker image from the docker hub 
+#and sets up the container
+
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+  yaw-app: 
+    image: 684673970544.dkr.ecr.eu-central-1.amazonaws.com/yaw-app@sha256:a9df32f25f76de05fd7420469bea0604fc74096b1693880e4d3ad4b42b97da6d
+    ports: 
+      - 3000:3000  

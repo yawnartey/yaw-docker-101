@@ -40,3 +40,10 @@ to push the image into the repo
     - use the command below for aws cli authentication
     - <aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 684673970544.dkr.ecr.eu-central-1.amazonaws.com>
     - follow aws "View push commands" to push the images to ECR
+
+
+## pulling an image from aws ecr(private) repository
+docker pull <full_private_repo_name>/<image_name>:<tag>
+
+## docker volume 
+persist docker container data
